@@ -22,7 +22,7 @@ export default function Hero() {
           />
         </div>
 
-        <h1 className="font-typewriter flicker" style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', letterSpacing: '0.1em', color: 'var(--text-primary)', marginBottom: '16px' }}>
+        <h1 className="font-typewriter flicker" style={{ fontSize: 'clamp(2rem, 5.5vw, 3.8rem)', letterSpacing: '0.1em', color: 'var(--text-primary)', marginBottom: '16px' }}>
           EL EXPEDIENTE 0
         </h1>
 
