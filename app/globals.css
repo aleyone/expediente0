@@ -68,7 +68,7 @@ h1, h2, h3, h4 {
 
 .section-label {
   font-family: 'Special Elite', monospace;
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: var(--accent-gold);
@@ -99,7 +99,7 @@ h1, h2, h3, h4 {
 .btn-primary {
   display: inline-block;
   font-family: 'Special Elite', monospace;
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   padding: 12px 32px;
@@ -115,7 +115,7 @@ h1, h2, h3, h4 {
 .btn-secondary {
   display: inline-block;
   font-family: 'Special Elite', monospace;
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   padding: 12px 32px;
@@ -134,7 +134,7 @@ h1, h2, h3, h4 {
   border: 2px solid var(--accent-red);
   color: var(--accent-red);
   font-family: 'Special Elite', monospace;
-  font-size: 0.55rem;
+  font-size: 0.7rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   padding: 2px 8px;
