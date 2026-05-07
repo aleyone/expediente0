@@ -1,50 +1,29 @@
 'use client'
 export default function ContactoSection() {
   return (
-    <section id="contacto" className="py-24 px-6" style={{ borderTop: '1px solid var(--border-color)' }}>
-      <div className="max-w-2xl mx-auto text-center">
-        <p className="section-label mb-3">Comunicaciones</p>
-        <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', marginBottom: '1rem' }}>
-          Contacto
-        </h2>
-        <p className="mb-12" style={{ color: 'var(--text-secondary)' }}>
-          ¿Tienes un caso que merece ser investigado? ¿Quieres proponer una colaboración o un evento?
-          Abre un expediente.
+    <section id="contacto" className="section">
+      <div className="container" style={{ textAlign: 'center' }}>
+        <p className="section-label" style={{ textAlign: 'center' }}>Comunicaciones</p>
+        <h2 style={{ fontSize: 'clamp(2rem, 5vw, 3rem)', marginBottom: '16px' }}>Contacto</h2>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '48px', maxWidth: '480px', margin: '0 auto 48px' }}>
+          ¿Tienes un caso que merece ser investigado? ¿Quieres proponer una colaboración o un evento? Abre un expediente.
         </p>
-
-        {/* Contact links */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-          <a
-            href="https://www.youtube.com/@elexpediente0"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="card-hover flex items-center gap-3 px-6 py-4 rounded-sm"
-            style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', textDecoration: 'none' }}
-          >
-            <span style={{ fontSize: '1.2rem' }}>▶</span>
-            <div className="text-left">
-              <div className="font-typewriter text-xs tracking-widest" style={{ color: 'var(--text-muted)' }}>YouTube</div>
-              <div className="font-typewriter text-xs" style={{ color: 'var(--text-primary)' }}>@elexpediente0</div>
-            </div>
-          </a>
-          <a
-            href="https://www.ivoox.com/podcast-expediente-0_sq_f13043182_1.html"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="card-hover flex items-center gap-3 px-6 py-4 rounded-sm"
-            style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', textDecoration: 'none' }}
-          >
-            <span style={{ fontSize: '1.2rem' }}>🎙</span>
-            <div className="text-left">
-              <div className="font-typewriter text-xs tracking-widest" style={{ color: 'var(--text-muted)' }}>Podcast</div>
-              <div className="font-typewriter text-xs" style={{ color: 'var(--text-primary)' }}>EL EXPEDIENTE 0</div>
-            </div>
-          </a>
+        <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '40px' }}>
+          {[
+            { href: 'https://www.youtube.com/@elexpediente0', icon: '▶', label: 'YouTube', sub: '@elexpediente0' },
+            { href: 'https://www.ivoox.com/podcast-expediente-0_sq_f13043182_1.html', icon: '🎙', label: 'Podcast', sub: 'EL EXPEDIENTE 0' },
+          ].map((item) => (
+            <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className="card"
+              style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '16px 24px', textDecoration: 'none', minWidth: '200px' }}>
+              <span style={{ fontSize: '1.2rem' }}>{item.icon}</span>
+              <div style={{ textAlign: 'left' }}>
+                <div className="font-typewriter" style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: 'var(--text-muted)' }}>{item.label}</div>
+                <div className="font-typewriter" style={{ fontSize: '0.65rem', color: 'var(--text-primary)' }}>{item.sub}</div>
+              </div>
+            </a>
+          ))}
         </div>
-
-        <p className="font-typewriter text-xs" style={{ color: 'var(--text-muted)' }}>
-          Para colaboraciones y prensa: próximamente correo directo
-        </p>
+        <p className="font-typewriter" style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>Para colaboraciones y prensa: próximamente correo directo</p>
       </div>
     </section>
   )

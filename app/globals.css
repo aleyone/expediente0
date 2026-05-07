@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Special+Elite&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
 
+@source "../components/**/*.tsx";
+@source "../app/**/*.tsx";
+
 :root {
   --bg-primary: #0a0806;
   --bg-secondary: #111009;
@@ -10,11 +13,9 @@
   --text-secondary: #a89880;
   --text-muted: #6b5d4f;
   --accent-red: #8b1a1a;
-  --accent-red-bright: #c0392b;
   --accent-gold: #c4a44a;
-  --accent-cream: #d4c4a0;
   --border-color: #2a221a;
-  --border-faint: #1a1410;
+  --container: 1152px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -47,6 +48,22 @@ h1, h2, h3, h4 {
   color: var(--text-primary);
 }
 
+/* ── Layout helpers ── */
+.container {
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.section {
+  padding-top: 96px;
+  padding-bottom: 96px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* ── Typography ── */
 .font-typewriter { font-family: 'Special Elite', 'Courier New', monospace; }
 
 .section-label {
@@ -56,12 +73,66 @@ h1, h2, h3, h4 {
   text-transform: uppercase;
   color: var(--accent-gold);
   display: block;
+  margin-bottom: 12px;
 }
 
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 16px;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  padding: 24px;
+  transition: transform 0.2s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-gold);
+  background-color: var(--bg-hover);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-block;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 12px 32px;
+  background: var(--accent-red);
+  color: var(--text-primary);
+  border: 1px solid #a02020;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+.btn-primary:hover { background: #a02020; }
+
+.btn-secondary {
+  display: inline-block;
+  font-family: 'Special Elite', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 12px 32px;
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
+}
+.btn-secondary:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+/* ── Stamp ── */
 .stamp {
   display: inline-block;
-  border: 2px solid #8b1a1a;
-  color: #8b1a1a;
+  border: 2px solid var(--accent-red);
+  color: var(--accent-red);
   font-family: 'Special Elite', monospace;
   font-size: 0.55rem;
   letter-spacing: 0.2em;
@@ -71,34 +142,69 @@ h1, h2, h3, h4 {
   opacity: 0.8;
 }
 
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: #2a221a; border-radius: 3px; }
-::selection { background: #8b1a1a; color: var(--text-primary); }
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+/* ── Grid layouts ── */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.grid-2-reverse {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
 }
 
-@keyframes flicker {
-  0%, 89%, 91%, 93%, 100% { opacity: 1; }
-  90%, 92% { opacity: 0.75; }
+@media (max-width: 768px) {
+  .grid-2, .grid-2-reverse, .grid-3, .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
 }
 
-.fade-in { animation: fadeInUp 0.7s ease forwards; }
-.flicker { animation: flicker 10s infinite; }
+/* ── Flex helpers ── */
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-row-gap { display: flex; flex-direction: row; gap: 16px; flex-wrap: wrap; }
 
-.card-hover {
-  transition: transform 0.2s ease, border-color 0.25s ease, background 0.25s ease;
-}
-.card-hover:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent-gold) !important;
-  background-color: var(--bg-hover);
-}
-
-/* Tailwind v4 utility overrides for our custom classes */
+/* ── Utilities ── */
+.text-muted { color: var(--text-muted); }
+.text-secondary { color: var(--text-secondary); }
+.text-gold { color: var(--accent-gold); }
+.border-top { border-top: 1px solid var(--border-color); }
+.mt-2 { margin-top: 8px; }
+.mt-4 { margin-top: 16px; }
+.mt-6 { margin-top: 24px; }
+.mt-8 { margin-top: 32px; }
+.mt-10 { margin-top: 40px; }
+.mt-12 { margin-top: 48px; }
+.mb-2 { margin-bottom: 8px; }
+.mb-3 { margin-bottom: 12px; }
+.mb-4 { margin-bottom: 16px; }
+.mb-6 { margin-bottom: 24px; }
+.mb-8 { margin-bottom: 32px; }
+.mb-10 { margin-bottom: 40px; }
+.mb-12 { margin-bottom: 48px; }
+.mb-16 { margin-bottom: 64px; }
+.gap-3 { gap: 12px; }
+.gap-4 { gap: 16px; }
+.gap-6 { gap: 24px; }
+.text-center { text-align: center; }
+.w-full { width: 100%; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.overflow-hidden { overflow: hidden; }
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -106,5 +212,20 @@ h1, h2, h3, h4 {
   overflow: hidden;
 }
 
-@source "../components/**/*.tsx";
-@source "../app/**/*.tsx";
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes flicker {
+  0%, 89%, 91%, 93%, 100% { opacity: 1; }
+  90%, 92% { opacity: 0.75; }
+}
+.fade-in { animation: fadeInUp 0.7s ease forwards; }
+.flicker { animation: flicker 10s infinite; }
+
+/* ── Scrollbar & selection ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: #2a221a; border-radius: 3px; }
+::selection { background: #8b1a1a; color: var(--text-primary); }
